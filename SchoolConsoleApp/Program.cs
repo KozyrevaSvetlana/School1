@@ -70,9 +70,8 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             Console.WriteLine("Здравствуйте! Введите название вашей школы");
-            //string schoolName = Console.ReadLine();
-            //School school = new School(schoolName);
-            School school = new School("школа");
+            string schoolName = Console.ReadLine();
+            School school = new School(schoolName);
             Console.WriteLine($"Школа {school.Name} успешно создана");
 
             while (true)
@@ -129,13 +128,16 @@ namespace ConsoleApp2
                 {
                     school.PrintStudents();
                     Console.WriteLine($"Напишите порядковый номер ученика");
-                    int userAnswerDelete = Convert.ToInt32(Console.ReadLine());
-                    while (userAnswerDelete > school.Students.Count || userAnswerDelete < 0)
+                    string userInput = Console.ReadLine();
+                    int DeleteStudent;
+                    bool IsValid = int.TryParse(userInput, out DeleteStudent);
+
+                    while (DeleteStudent > school.Students.Count || DeleteStudent < 0)
                     {
                         Console.WriteLine($"Неверный ввод. Напишите порядковый номер ученика");
-                        userAnswerDelete = Convert.ToInt32(Console.ReadLine());
+                        IsValid = int.TryParse(userInput, out DeleteStudent);
                     }
-                    school.DeleteStudent(userAnswerDelete);
+                    school.DeleteStudent(DeleteStudent);
                 }
             }
         }
