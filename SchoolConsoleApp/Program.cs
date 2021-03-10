@@ -130,7 +130,7 @@ namespace ConsoleApp2
                     Console.WriteLine($"Напишите порядковый номер ученика");
                     string userInput = Console.ReadLine();
                     int DeleteStudent;
-                    bool IsValid = int.TryParse(userInput, out DeleteStudent);
+                    bool IsValid = int.TryParse(userInput, out DeleteStudent);//проверка на валидность
 
                     while (DeleteStudent > school.Students.Count || DeleteStudent < 0)
                     {
